@@ -8,23 +8,23 @@
  */
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *firstNode;
+	list_t *newNode;
 
 	if (str == NULL)
 		return (NULL);
-	firstNode = malloc(sizeof(list_t));
-	if (firstNode == NULL)
+	newNode = malloc(sizeof(list_t));
+	if (newNode == NULL)
 		return (NULL);
-	firstNode->str = strdup(str);
-	if (firstNode == NULL)
+	newNode->str = strdup(str);
+	if (newNode->str == NULL)
 	{
-		free(firstNode);
+		free(newNode);
 		return (NULL);
 	}
-	firstNode->len = _strlen(firstNode->str);
-	firstNode->next = *head;
-	*head = firstNode;
-	return (firstNode);
+	newNode->len = _strlen(newNode->str);
+	newNode->next = *head;
+	*head = newNode;
+	return (newNode);
 }
 
 /**
