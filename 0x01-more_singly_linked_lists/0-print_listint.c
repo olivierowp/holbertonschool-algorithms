@@ -5,6 +5,7 @@
  * @h: pointer to head of list
  * Return: number of elements
  */
+
 size_t print_listint(const listint_t *h)
 {
 	size_t count;
@@ -12,7 +13,7 @@ size_t print_listint(const listint_t *h)
 	count = 0;
 	while (h != NULL)
 	{
-		printf("%i\n", h->n);
+		printf("%d\n", h->n);
 		h = h->next;
 		count++;
 	}
