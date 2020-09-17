@@ -47,7 +47,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || key == NULL || value == NULL)
 		return (0);
-	kidx = key_index(key, ht->size);
+	kidx = key_index((const unsigned char *)key, ht->size);
 	current = ht->array[kidx];
 	while (current != NULL)
 	{
@@ -59,8 +59,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 				return (0);
 			return (1);
 		}
+		current = current->next;
 	}
-	if (add_node(&ht->array[kidx], key, value) == 0)
-		return (0);
-	return (1);
+	return (add_node(&ht->array[kidx], key, value));
 }
