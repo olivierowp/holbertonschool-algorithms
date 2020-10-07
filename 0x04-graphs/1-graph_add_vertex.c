@@ -20,10 +20,9 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 			return (NULL);
 		tmp = tmp->next;
 	}
-	/* last element */
+
 	if (tmp && !strcmp(tmp->content, str))
 		return (NULL);
-	/* create a new vertex */
 	new = malloc(sizeof(*new));
 	if (new == NULL)
 		return (NULL);

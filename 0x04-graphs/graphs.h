@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX(X, Y) ((X) >= (Y) ? (X) : (Y))
+
 /**
  * enum edge_type_e - Enumerates the different types of
  * connection between two vertices
@@ -67,11 +69,33 @@ typedef struct graph_s
 	vertex_t *vertices;
 } graph_t;
 
+/* struct for BFS */
+/**
+ * struct queue_s - Element of a FIFO queue.
+ * @vertex: pointer to the vertex stored here.
+ * @depth: depth from this node to source node.
+ * @next: pointer to next element.
+ */
+typedef struct queue_s
+{
+	vertex_t *vertex;
+	size_t depth;
+	struct queue_s *next;
+} queue_t;
+
 graph_t *graph_create(void);
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 void graph_display(const graph_t *graph);
 vertex_t *find_value(vertex_t *l_list, const char *value);
 edge_t *vertex_add_edge(vertex_t *start, vertex_t *dest);
-int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
+int graph_add_edge(graph_t *graph, const char *src,
+				   const char *dest, edge_type_t type);
+void free_vertex(vertex_t *vertex);
+void graph_delete(graph_t *graph);
+size_t depth_first_traverse(const graph_t *graph,
+							void (*action)(const vertex_t *v, size_t depth));
+
+size_t breadth_first_traverse(const graph_t *graph,
+							  void (*action)(const vertex_t *v, size_t depth));
 
 #endif /*__GRAPHS_H__*/
